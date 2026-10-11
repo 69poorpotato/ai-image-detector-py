@@ -19,7 +19,7 @@
 <tr>
 <td width="50%" valign="top">
 
-### [Card 1] Layer 1: C2PA Provenance
+### Layer 1: C2PA Provenance
 - **Standard**: C2PA JUMBF manifest parser
 - **Digital Source**: Evaluates IPTC `trainedAlgorithmicMedia`
 - **Agents Audited**: ChatGPT, DALL-E, Firefly, Midjourney, Bing
@@ -29,7 +29,7 @@
 </td>
 <td width="50%" valign="top">
 
-### [Card 2] Layer 2: Metadata & Prompts
+### Layer 2: Metadata & Prompts
 - **PNG Chunks**: Parses `parameters`, `prompt`, `workflow`, `Comment`
 - **Prompt Reconstruct**: Positive prompt, negative prompt, seed, steps
 - **Engines**: Automatic1111, ComfyUI, Fooocus, NovelAI, Flux.1, SD3
@@ -40,7 +40,7 @@
 <tr>
 <td width="50%" valign="top">
 
-### [Card 3] Layer 3: Signal Forensics
+### Layer 3: Signal Forensics
 - **2D FFT Radial Decay**: Computes power-law decay ($1/f^\alpha$)
 - **Noise Kurtosis**: Identifies non-sensor heavy-tailed residuals
 - **Local Variance**: Measures airbrushed, textureless patch ratio
@@ -50,9 +50,9 @@
 </td>
 <td width="50%" valign="top">
 
-### [Card 4] Layer 4: Interactive & Reports
+### Layer 4: Reports & Diagnostics
 - **Interactive Mode**: Drag-and-drop prompt for instant analysis
-- **HTML Reports**: Self-contained responsive dark-mode audit cards
+- **HTML Reports**: Self-contained responsive dark-mode audit reports
 - **Heatmaps**: 4-panel visualizer diagnostic maps (FFT, ELA, Noise)
 - **CI/CD Integration**: Machine-readable JSON output via `--json`
 
@@ -112,7 +112,7 @@
 <tr>
 <td width="50%" valign="top">
 
-### [Setup Card] Installation
+### Installation
 ```bash
 git clone https://github.com/69poorpotato/ai-image-detector-py.git
 cd ai-image-detector-py
@@ -129,7 +129,7 @@ ai-detect image.png
 </td>
 <td width="50%" valign="top">
 
-### [Usage Card] Common Commands
+### Common Commands
 ```bash
 # Standard analysis
 python main.py image.png
