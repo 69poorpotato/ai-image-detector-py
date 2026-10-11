@@ -1,0 +1,25 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Diagnostic outputs
+*diagnostic*.png
+forensics_out/
+*.log
+
+# IDEs
+.vscode/
+.idea/
+*.swp

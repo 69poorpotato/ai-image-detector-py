@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-image-detector"
+version = "1.0.0"
+description = "Multi-layer AI Image Detector & Forensic Analyzer combining C2PA Content Credentials, metadata parsing, and pixel signal forensics."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "AI Image Detector Team" }
+]
+keywords = [
+    "ai-detector",
+    "c2pa",
+    "content-credentials",
+    "forensics",
+    "image-forensics",
+    "stable-diffusion",
+    "midjourney",
+    "dall-e",
+    "deepfake-detection",
+    "ela",
+    "fft"
+]
+dependencies = [
+    "c2pa-python>=0.7.0",
+    "pillow>=10.0.0",
+    "opencv-python>=4.8.0",
+    "numpy>=1.24.0",
+    "scipy>=1.11.0",
+    "rich>=13.0.0",
+]
+
+[project.scripts]
+ai-detect = "main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["detector*"]
