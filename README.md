@@ -1,52 +1,72 @@
-# AI Image Detector & Forensic Suite
+<div align="center">
 
-> A multi-layered digital forensics and provenance verification suite to detect AI-generated images, extract generation prompts, audit C2PA Content Credentials, and compute pixel-level frequency signals.
+# AI IMAGE DETECTOR & FORENSIC SUITE (PYTHON)
 
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![C2PA Compliant](https://img.shields.io/badge/C2PA-Content%20Credentials-purple.svg)](https://c2pa.org/)
-[![Architecture: Multi--Layer](https://img.shields.io/badge/Architecture-Modular%20Forensics-brightgreen.svg)](#architecture)
+**Multi-layer digital forensics and provenance suite for AI-generated media**
 
----
+[![Python 3.9+](https://img.shields.io/badge/Python-3.9+-0284c7.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-10b981.svg)](LICENSE)
+[![C2PA Standard](https://img.shields.io/badge/C2PA-Content%20Credentials-8b5cf6.svg)](https://c2pa.org/)
+[![Architecture](https://img.shields.io/badge/Architecture-4--Layer%20Forensics-f59e0b.svg)](#detection-architecture)
 
-## Overview
-
-AI Image Detector combines four complementary detection and analysis layers into a fast, unified engine:
-
-1. **Layer 1: C2PA Content Credentials & Provenance (Deterministic & Cryptographic)**
-   - Audits Coalition for Content Provenance and Authenticity (C2PA) manifests.
-   - Evaluates IPTC `digitalSourceType` (e.g., `trainedAlgorithmicMedia` for generative AI).
-   - Identifies software agents (ChatGPT / DALL-E, Adobe Firefly, Midjourney, Bing Image Creator, Copilot).
-   - Validates digital signatures, certificate authorities (OpenAI OpCo, Microsoft, Adobe), timestamps, and invisible watermarks (SynthID).
-   - Confirms genuine camera hardware signing (Leica, Sony C2PA).
-
-2. **Layer 2: Deep Metadata & Prompt Extraction**
-   - Dissects PNG text chunks (`parameters`, `prompt`, `workflow`) and EXIF/XMP tags.
-   - Reconstructs positive prompts, negative prompts, seed, steps, sampler, CFG scale, and model checkpoints from:
-     - Automatic1111 / Stable Diffusion WebUI / Forge / Fooocus
-     - ComfyUI (full node graph inspection)
-     - NovelAI & InvokeAI
-     - Flux.1, SDXL, and Stable Diffusion 3
-     - Midjourney & Adobe Firefly XMP tags
-   - Distinguishes authentic optical camera EXIF (Canon, Nikon, Sony, Leica, Apple, etc.) with lens model and exposure parameters.
-
-3. **Layer 3: Signal & Pixel Forensics (Vectorized Sub-100ms Execution)**
-   - **2D FFT Radial Power Spectrum Decay**: Natural scenes follow a power-law decay ($1/f^\alpha$, where $\alpha \approx -2.0$). Diffusion and GAN models produce abnormal steep high-frequency rolloffs or flattened synthetic noise tails.
-   - **Noise Residual Kurtosis**: Physical camera sensors exhibit approximately Gaussian noise ($kurtosis \approx 0$). Denoised generative surfaces produce heavy-tailed residual distributions ($kurtosis > 20.0$).
-   - **Local Texture Variance**: Vectorized integral box filtering measures the ratio of airbrushed, poreless, texture-lacking surface patches.
-   - **Chromatic Edge Dispersion**: Measures whether high-gradient edges across Red and Blue channels display natural optical lens dispersion versus synthetic edge alignment.
-   - **Color Histogram Smoothness**: Evaluates 2nd-order differences in color histograms to detect continuous floating-point generation vs. camera sensor photon shot noise.
-   - **Error Level Analysis (ELA)**: Recompression discrepancy across texture boundaries.
-
-4. **Layer 4: Diagnostic Visualizers & HTML Reports**
-   - Interactive Drag-and-Drop terminal prompt for testing images rapidly.
-   - Standalone, self-contained interactive HTML audit report (`--html report.html`).
-   - 4-panel visualizer diagnostic maps (`--save-forensics diagnostic.png`).
-   - Machine-readable JSON output for automated CI/CD pipelines (`--json`).
+</div>
 
 ---
 
-## Terminal Dashboard Preview
+## Detection Architecture
+
+<table width="100%">
+<tr>
+<td width="50%" valign="top">
+
+### [Card 1] Layer 1: C2PA Provenance
+- **Standard**: C2PA JUMBF manifest parser
+- **Digital Source**: Evaluates IPTC `trainedAlgorithmicMedia`
+- **Agents Audited**: ChatGPT, DALL-E, Firefly, Midjourney, Bing
+- **Signatures**: Verifies certificate issuers & watermarks
+- **Hardware**: Identifies authentic camera signing (Leica, Sony)
+
+</td>
+<td width="50%" valign="top">
+
+### [Card 2] Layer 2: Metadata & Prompts
+- **PNG Chunks**: Parses `parameters`, `prompt`, `workflow`, `Comment`
+- **Prompt Reconstruct**: Positive prompt, negative prompt, seed, steps
+- **Engines**: Automatic1111, ComfyUI, Fooocus, NovelAI, Flux.1, SD3
+- **Camera EXIF**: Identifies optical sensors (Canon, Nikon, Sony, Apple)
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### [Card 3] Layer 3: Signal Forensics
+- **2D FFT Radial Decay**: Computes power-law decay ($1/f^\alpha$)
+- **Noise Kurtosis**: Identifies non-sensor heavy-tailed residuals
+- **Local Variance**: Measures airbrushed, textureless patch ratio
+- **Chromatic Dispersion**: Checks optical lens edge dispersion
+- **Histogram Smoothness**: Evaluates 2nd-order color difference
+
+</td>
+<td width="50%" valign="top">
+
+### [Card 4] Layer 4: Interactive & Reports
+- **Interactive Mode**: Drag-and-drop prompt for instant analysis
+- **HTML Reports**: Self-contained responsive dark-mode audit cards
+- **Heatmaps**: 4-panel visualizer diagnostic maps (FFT, ELA, Noise)
+- **CI/CD Integration**: Machine-readable JSON output via `--json`
+
+</td>
+</tr>
+</table>
+
+---
+
+## Terminal Dashboard
+
+<table width="100%">
+<tr>
+<td>
 
 ```text
 ==================================================================================
@@ -80,16 +100,19 @@ AI Image Detector combines four complementary detection and analysis layers into
   [Tip] Need diagnostic heatmaps? Run with --save-forensics diagnostic.png to visualize FFT & noise maps.
 ```
 
+</td>
+</tr>
+</table>
+
 ---
 
-## Installation
+## Quick Start Guide
 
-### Prerequisites
-- Python 3.9 or higher
-- Windows, macOS, or Linux
+<table width="100%">
+<tr>
+<td width="50%" valign="top">
 
-### Clone and Install Dependencies
-
+### [Setup Card] Installation
 ```bash
 git clone https://github.com/69poorpotato/ai-image-detector-py.git
 cd ai-image-detector-py
@@ -97,158 +120,193 @@ cd ai-image-detector-py
 pip install -r requirements.txt
 ```
 
-*(Optional: Install as an editable CLI command)*
+Optional global CLI install:
 ```bash
 pip install -e .
+ai-detect image.png
 ```
-After installation, you can run `ai-detect` directly from anywhere in your terminal.
 
----
+</td>
+<td width="50%" valign="top">
 
-## CLI Usage Guide
-
-### Command Line Options
-
-| Option | Argument | Description | Example |
-| :--- | :--- | :--- | :--- |
-| `images` | `[file ...]` | One or more image files to analyze | `python main.py photo.png` |
-| `-i, --interactive` | None | Launch interactive drag-and-drop prompt | `python main.py -i` |
-| `--html` | `[output.html]` | Generate standalone interactive HTML audit report | `python main.py image.png --html report.html` |
-| `-s, --save-forensics` | `[output.png]` | Generate 4-panel diagnostic heatmap | `python main.py image.png --save-forensics diag.png` |
-| `-d, --dir` | `<directory>` | Batch scan all supported images in a folder | `python main.py --dir ./photos` |
-| `-o, --output` | `<file.json>` | Save report as a JSON file | `python main.py image.png -o audit.json` |
-| `-j, --json` | None | Output machine-readable JSON to stdout | `python main.py image.png --json` |
-| `-t, --threshold` | `<0-100>` | Custom confidence threshold (default: 50.0) | `python main.py image.png -t 70` |
-| `-v, --verbose` | None | Print detailed mathematical parameters | `python main.py image.png -v` |
-
----
-
-## Usage Examples
-
-### 1. Interactive Drag-and-Drop Mode
-Run without arguments or pass `-i`:
+### [Usage Card] Common Commands
 ```bash
+# Standard analysis
+python main.py image.png
+
+# Interactive drag & drop
 python main.py -i
-```
-Drag any image file directly from your file manager into the terminal window and press `Enter` for instant results. You can scan multiple images sequentially in the same session.
 
-### 2. Standalone Interactive HTML Report
-```bash
-python main.py image.png --html audit_report.html
-```
-Creates a responsive, dark-mode HTML file with an embedded thumbnail, confidence gauges, full C2PA provenance records, and signal forensic meters. Can be shared directly or hosted on GitHub Pages.
+# Generate HTML report
+python main.py image.png --html report.html
 
-### 3. Generate Diagnostic Forensic Heatmaps
-```bash
-python main.py image.png --save-forensics diagnostic.png
-```
-Produces a 4-panel diagnostic visual comparison:
-- Panel 1: Original Image
-- Panel 2: 2D FFT Magnitude Spectrum (Magma colormap)
-- Panel 3: Error Level Analysis Heatmap (ELA)
-- Panel 4: High-Frequency Noise Residual Map (Viridis colormap)
-
-### 4. Batch Scan a Directory
-```bash
-python main.py --dir ./test_images
-```
-Scans all supported images (`.png`, `.jpg`, `.jpeg`, `.webp`, `.tif`, `.bmp`, `.avif`) and outputs a clean batch summary table with dimensions, color-coded verdicts, confidence percentages, and primary indicators.
-
-### 5. Automation and CI/CD Pipelines (JSON)
-```bash
-python main.py suspicious.png --json
+# Export diagnostic heatmap
+python main.py image.png --save-forensics diag.png
 ```
 
-Example JSON response:
-```json
-{
-  "file_info": {
-    "file_name": "image.png",
-    "dimensions": "1353 x 1163",
-    "format": "PNG",
-    "sha256": "f1919b26aadb508a87fbeea502708a50ddd9d1b212245c1dad95ad8c7e62d127"
-  },
-  "verdict": "CONFIRMED AI (C2PA / Content Credentials)",
-  "confidence": 100.0,
-  "detected_generator": "ChatGPT gpt-image",
-  "primary_indicator": "C2PA Content Credentials (ChatGPT gpt-image)",
-  "c2pa": {
-    "has_c2pa": true,
-    "claim_generator": "OpenAI Media Service API",
-    "issuer": "OpenAI OpCo, LLC",
-    "watermarks": ["c2pa.watermarked.unbound"]
-  },
-  "forensics": {
-    "forensic_score": 0.80,
-    "noise_kurtosis": 44.93,
-    "psd_slope": -3.22,
-    "smoothness_ratio": 0.656
-  }
-}
-```
+</td>
+</tr>
+</table>
 
 ---
 
-## Architecture
+## CLI Options & Flags
 
-```
-ai-image-detector/
-├── detector/
-│   ├── __init__.py           # Package exports
-│   ├── analyzer.py           # Master coordinator and decision engine
-│   ├── c2pa_checker.py       # C2PA manifest, IPTC source types and signature audit
-│   ├── metadata_checker.py   # PNG chunks, SD/ComfyUI/Flux prompts and EXIF parser
-│   ├── forensics.py          # Vectorized 2D FFT, noise kurtosis and ELA analyzer
-│   ├── visualizer.py         # 4-panel diagnostic heatmap generator
-│   ├── html_reporter.py      # Standalone interactive HTML report generator
-│   └── ui.py                 # Terminal dashboard renderer
-├── tests/
-│   └── test_detector.py      # Automated test suite (6 unit tests)
-├── main.py                   # Main CLI entrypoint
-├── requirements.txt          # Python dependencies
-├── pyproject.toml            # Package configuration
-├── LICENSE                   # MIT License with attribution requirements
-└── README.md                 # Complete documentation guide
-```
+<table width="100%">
+<tr>
+<th>Option</th>
+<th>Argument</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+<tr>
+<td><code>images</code></td>
+<td><code>[file ...]</code></td>
+<td>One or more image files to analyze</td>
+<td><code>python main.py photo.png</code></td>
+</tr>
+<tr>
+<td><code>-i, --interactive</code></td>
+<td>None</td>
+<td>Launch interactive drag-and-drop terminal prompt</td>
+<td><code>python main.py -i</code></td>
+</tr>
+<tr>
+<td><code>--html</code></td>
+<td><code>[output.html]</code></td>
+<td>Generate standalone interactive HTML audit report</td>
+<td><code>python main.py image.png --html report.html</code></td>
+</tr>
+<tr>
+<td><code>-s, --save-forensics</code></td>
+<td><code>[output.png]</code></td>
+<td>Generate 4-panel diagnostic visualizer map</td>
+<td><code>python main.py image.png --save-forensics diag.png</code></td>
+</tr>
+<tr>
+<td><code>-d, --dir</code></td>
+<td><code>&lt;directory&gt;</code></td>
+<td>Batch scan all supported images in a folder</td>
+<td><code>python main.py --dir ./photos</code></td>
+</tr>
+<tr>
+<td><code>-o, --output</code></td>
+<td><code>&lt;file.json&gt;</code></td>
+<td>Save structured report to a JSON file</td>
+<td><code>python main.py image.png -o audit.json</code></td>
+</tr>
+<tr>
+<td><code>-j, --json</code></td>
+<td>None</td>
+<td>Output machine-readable JSON to stdout</td>
+<td><code>python main.py image.png --json</code></td>
+</tr>
+<tr>
+<td><code>-t, --threshold</code></td>
+<td><code>&lt;0-100&gt;</code></td>
+<td>Custom confidence threshold (default: 50.0)</td>
+<td><code>python main.py image.png -t 75</code></td>
+</tr>
+<tr>
+<td><code>-v, --verbose</code></td>
+<td>None</td>
+<td>Print detailed mathematical parameters</td>
+<td><code>python main.py image.png -v</code></td>
+</tr>
+</table>
 
 ---
 
-## Running Tests
+## Supported AI Generators & Frameworks
 
-Run the unit test suite:
+<table width="100%">
+<tr>
+<td width="33%" valign="top">
+
+### Commercial Services
+- ChatGPT (gpt-image)
+- DALL-E 2 / 3
+- Midjourney (v4, v5, v6, v7)
+- Adobe Firefly
+- Bing Image Creator / Copilot
+- Google Imagen / Gemini
+
+</td>
+<td width="33%" valign="top">
+
+### Open & Diffusion Models
+- Stable Diffusion 1.5 / 2.1
+- SDXL / SDXL Turbo
+- Stable Diffusion 3
+- Flux.1 (Schnell / Dev)
+- NovelAI
+- InvokeAI
+
+</td>
+<td width="33%" valign="top">
+
+### Workflows & Web UIs
+- ComfyUI Node Graphs
+- Automatic1111 WebUI
+- SD-Forge / SwarmUI
+- Fooocus
+- Ideogram / Leonardo.ai
+- SeaArt / Krea AI / Playground
+
+</td>
+</tr>
+</table>
+
+---
+
+## Forensic Signals Reference
+
+<table width="100%">
+<tr>
+<td width="50%" valign="top">
+
+### Frequency & Noise Domain
+- **FFT Spectral Slope**: Physical optical scenes adhere strictly to power-law decay ($\alpha \approx -2.0 \pm 0.4$). Generated diffusion outputs exhibit steeper rolloffs or unnatural spectral peaks.
+- **Noise Kurtosis**: Natural camera sensors produce Gaussian or Poisson noise profiles ($kurtosis \approx 0$). Denoised generative surfaces yield heavy-tailed excess kurtosis ($> 20.0$).
+
+</td>
+<td width="50%" valign="top">
+
+### Texture & Optics Domain
+- **Texture Smoothness**: Evaluates local pixel variance in 16x16 windows. Airbrushed generative skin and flat synthetic regions lack physical micro-textures.
+- **Chromatic Edge Dispersion**: Optical glass bends red and blue wavelengths unevenly away from the optical center. Synthetic images generate edges without radial chromatic dispersion.
+
+</td>
+</tr>
+</table>
+
+---
+
+## Testing & Verification
+
+<table width="100%">
+<tr>
+<td>
+
+Run the automated unittest suite:
 
 ```bash
 python -m unittest tests/test_detector.py
 ```
 
----
+All unit tests verify:
+- C2PA provenance extraction on real signed media
+- Generation prompt extraction across Automatic1111 and ComfyUI
+- Vectorized 2D FFT and noise kurtosis calculation
+- Standalone HTML audit report generation
+- 4-panel visualizer diagnostic map output
 
-## Supported AI Models & Generators
-
-The suite detects provenance tags, metadata parameters, or structural fingerprints from:
-- ChatGPT & DALL-E 3
-- Midjourney (v4, v5, v6, v7)
-- Stable Diffusion (1.5, 2.1, SDXL, SD3)
-- Flux.1 (Black Forest Labs)
-- ComfyUI & Fooocus
-- Automatic1111 / WebUI / SD-Forge / SwarmUI
-- Adobe Firefly
-- Bing Image Creator / Microsoft Designer / Copilot
-- Google Imagen & Gemini
-- NovelAI & InvokeAI
-- Ideogram & Leonardo.ai
-- Playground AI, Krea AI, and SeaArt
+</td>
+</tr>
+</table>
 
 ---
 
-## License and Attribution
+## License
 
-This project is licensed under the **MIT License**.
-
-### Credit Requirement
-You are completely free to use, modify, distribute, integrate, or sell this software for any personal or commercial project. The only condition is that **credit and attribution must be given to the author**:
-
-- **Author**: Poor Potato ([@69poorpotato](https://github.com/69poorpotato))
-- **Repository**: [https://github.com/69poorpotato/ai-image-detector-py](https://github.com/69poorpotato/ai-image-detector-py)
-
-Please retain the copyright notice from the [`LICENSE`](LICENSE) file in all distributions and forks.
+This project is licensed under the [MIT License](LICENSE).
