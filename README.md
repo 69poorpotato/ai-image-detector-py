@@ -91,8 +91,8 @@ AI Image Detector combines four complementary detection and analysis layers into
 ### Clone and Install Dependencies
 
 ```bash
-git clone https://github.com/69poorpotato/ai-image-detector.git
-cd ai-image-detector
+git clone https://github.com/69poorpotato/ai-image-detector-py.git
+cd ai-image-detector-py
 
 pip install -r requirements.txt
 ```
@@ -249,6 +249,6 @@ This project is licensed under the **MIT License**.
 You are completely free to use, modify, distribute, integrate, or sell this software for any personal or commercial project. The only condition is that **credit and attribution must be given to the author**:
 
 - **Author**: Poor Potato ([@69poorpotato](https://github.com/69poorpotato))
-- **Repository**: [https://github.com/69poorpotato/ai-image-detector](https://github.com/69poorpotato/ai-image-detector)
+- **Repository**: [https://github.com/69poorpotato/ai-image-detector-py](https://github.com/69poorpotato/ai-image-detector-py)
 
 Please retain the copyright notice from the [`LICENSE`](LICENSE) file in all distributions and forks.
